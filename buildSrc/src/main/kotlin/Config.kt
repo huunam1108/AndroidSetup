@@ -16,6 +16,7 @@ object Versions {
     const val material = "1.2.0-alpha02"
 
     const val ktlint = "0.36.0"
+    const val detekt = "1.9.1"
 }
 
 object ClassPaths {
@@ -28,6 +29,7 @@ object Plugins {
     const val kotlinAndroid = "android"
     const val kotlinExt = "android.extensions"
     const val kotlinApt = "kapt"
+    const val detekt = "io.gitlab.arturbosch.detekt"
 }
 
 object Deps {

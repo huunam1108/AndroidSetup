@@ -5,6 +5,7 @@ plugins {
     kotlin(Plugins.kotlinAndroid)
     kotlin(Plugins.kotlinExt)
     kotlin(Plugins.kotlinApt)
+    id(Plugins.detekt).version(Versions.detekt)
 }
 
 buildscript {
@@ -46,6 +47,16 @@ android {
 
 androidExtensions {
     isExperimental = true
+}
+
+detekt {
+    config = files("$rootDir/config/detekt/detekt.yml")
+    input = files("src/main/java")
+    reports {
+        html.enabled = true // observe findings in your browser with structure and code snippets
+        xml.enabled = false // checkstyle like format mainly for integrations like Jenkins
+        txt.enabled = false // similar to the console output, contains issue signature to manually edit baseline files
+    }
 }
 
 dependencies {
