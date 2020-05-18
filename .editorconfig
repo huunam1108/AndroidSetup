@@ -1,0 +1,5 @@
+# this use for ktlint config
+# see more at https://github.com/pinterest/ktlint#editorconfig
+[*.{kt, kts}]
+# Comma-separated list of rules to disable
+disabled_rules=no-wildcard-imports

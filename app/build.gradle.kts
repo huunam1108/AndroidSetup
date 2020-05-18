@@ -7,6 +7,10 @@ plugins {
     kotlin(Plugins.kotlinApt)
 }
 
+buildscript {
+    apply(from = "ktlint.gradle.kts")
+}
+
 android {
     compileSdkVersion(Versions.compile_sdk_version)
     buildToolsVersion(Versions.build_tools_version)

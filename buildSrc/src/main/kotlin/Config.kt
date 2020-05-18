@@ -14,6 +14,8 @@ object Versions {
     const val junit = "4.12"
     const val constraint_layout = "1.1.3"
     const val material = "1.2.0-alpha02"
+
+    const val ktlint = "0.36.0"
 }
 
 object ClassPaths {
@@ -39,4 +41,6 @@ object Deps {
     const val kotlin_stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
     const val constraint_layout = "androidx.constraintlayout:constraintlayout:${Versions.constraint_layout}"
     const val junit = "junit:junit:${Versions.junit}"
+
+    const val ktlint = "com.pinterest:ktlint:${Versions.ktlint}"
 }
