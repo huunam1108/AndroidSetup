@@ -1,0 +1,24 @@
+project_type: android
+build:
+  configurations:
+    image: framgiaciteam/android:latest
+
+test:
+  download_dependencies:
+    ignore: false
+    command: ./gradlew androidDependencies
+  run_unit_test:
+    ignore: false
+    command: ./gradlew testDebugUnitTestCoverage
+  check_style:
+    ignore: false
+    command: ./gradlew ktlintCheck
+  check_lint:
+    ignore: false
+    command: ./gradlew detekt
+
+cache:
+  gradle:
+    folder: ~/.gradle
+    file: app/build.gradle.kts
+

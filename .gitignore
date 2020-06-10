@@ -38,3 +38,4 @@ gkc_*
 
 # captured images or li
 captures/
+.framgia-ci-reports/

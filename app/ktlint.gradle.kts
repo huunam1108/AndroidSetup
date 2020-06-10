@@ -8,7 +8,7 @@ val ktlintCheck by tasks.creating(JavaExec::class) {
     description = "Check Kotlin code style."
     classpath = configurations.getByName("ktlint")
     main = "com.pinterest.ktlint.Main"
-    args = listOf("src/**/*.kt", "--reporter=html,output=$buildDir/reports/ktlint/ktlint.html")
+    args = listOf("src/**/*.kt", "--reporter=html,output=${project.rootDir}/.framgia-ci-reports/ktlint/ktlint.html")
 }
 
 val ktlintFormat by tasks.creating(JavaExec::class) {
