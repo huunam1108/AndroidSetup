@@ -1,4 +1,5 @@
 object Versions {
+    const val firebase_distribution_plugin = "2.0.1"
     const val kotlin = "1.3.71"
     const val android_gradle_plugin = "3.5.0"
 
@@ -22,6 +23,7 @@ object Versions {
 object ClassPaths {
     const val android_gradle_plugin = "com.android.tools.build:gradle:${Versions.android_gradle_plugin}"
     const val kotlin_gradle_plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
+    const val firebase_distribution_plugin = "com.google.firebase:firebase-appdistribution-gradle:${Versions.firebase_distribution_plugin}"
 }
 
 object Plugins {
@@ -30,6 +32,7 @@ object Plugins {
     const val kotlinExt = "android.extensions"
     const val kotlinApt = "kapt"
     const val detekt = "io.gitlab.arturbosch.detekt"
+    const val firebase_distribution = "com.google.firebase.appdistribution"
 }
 
 object Deps {

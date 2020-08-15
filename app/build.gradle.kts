@@ -1,7 +1,10 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import java.io.FileInputStream
+import java.util.*
 
 plugins {
     id(Plugins.androidApp)
+    id(Plugins.firebase_distribution)
     kotlin(Plugins.kotlinAndroid)
     kotlin(Plugins.kotlinExt)
     kotlin(Plugins.kotlinApt)
@@ -10,7 +13,13 @@ plugins {
 
 buildscript {
     apply(from = "ktlint.gradle.kts")
+    apply(from = "../distribution/distribution.gradle.kts")
 }
+
+// Load signing configs for release
+val keystorePropertiesFile = rootProject.file("distribution/keystore.properties")
+val keystoreProperties = Properties()
+keystoreProperties.load(FileInputStream(keystorePropertiesFile))
 
 android {
     compileSdkVersion(Versions.compile_sdk_version)
@@ -24,6 +33,18 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles(file("proguard-rules.pro"))
     }
+
+    // Add release keystore info
+    // ref: https://developer.android.com/studio/publish/app-signing#secure-shared-keystore
+    signingConfigs {
+        create("release") {
+            storeFile = file(keystoreProperties["storeFile"] as Any)
+            storePassword = keystoreProperties["storePassword"] as? String
+            keyAlias = keystoreProperties["keyAlias"] as? String
+            keyPassword = keystoreProperties["keyPassword"] as? String
+        }
+    }
+
     buildTypes {
         getByName("release") {
             isMinifyEnabled = true
@@ -32,7 +53,24 @@ android {
                 getDefaultProguardFile("proguard-android.txt"),
                 file("proguard-rules.pro")
             )
+            signingConfig = signingConfigs.getByName("release")
         }
+    }
+
+    flavorDimensions("default")
+    productFlavors {
+        create("develop") {
+            manifestPlaceholders = mapOf("applicationName" to "@string/app_name_dev")
+            // setup release note and group of testers
+            // ref: https://firebase.google.com/docs/app-distribution/android/distribute-gradle?authuser=1#step_3_configure_your_distribution_properties
+            firebaseAppDistribution {
+                appId = "1:578593782165:android:a7777d0c48a2b35aac5e9c"
+                releaseNotesFile = "app/src/develop/release_notes.txt"
+                groups = "my-testers"
+                serviceCredentialsFile = "distribution/androidsetup-private-key.json"
+            }
+        }
+        // other flavor
     }
 
     compileOptions {
