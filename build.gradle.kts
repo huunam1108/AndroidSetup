@@ -8,6 +8,7 @@ buildscript {
     dependencies {
         classpath(ClassPaths.android_gradle_plugin)
         classpath(ClassPaths.kotlin_gradle_plugin)
+        classpath(ClassPaths.firebase_distribution_plugin)
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }

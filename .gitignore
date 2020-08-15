@@ -38,3 +38,7 @@ gkc_*
 
 # captured images or li
 captures/
+
+# keystore & private firebase key
+*.jks
+androidsetup-private-key.json
